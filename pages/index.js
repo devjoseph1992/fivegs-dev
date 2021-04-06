@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import DarkModeSwitch from '../components/layouts/DarkModeSwitch';
-import { getFeaturedProducts } from '../utils/contentful';
+import { getFeaturedProducts } from '@/utils/contentful';
 
 export async function getStaticProps() {
  const data = await getFeaturedProducts();
@@ -23,8 +22,6 @@ export default function Home({ products }) {
      <p>{product.pName}</p>
     </div>
    ))}
-   contentfull
-   <DarkModeSwitch />
   </>
  );
 }
