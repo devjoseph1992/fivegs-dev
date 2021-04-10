@@ -10,10 +10,13 @@ const graphQLClient = new GraphQLClient(endpoint, {
 export const getFeaturedProducts = async () => {
  const productsQuery = gql`
   {
-   productsCollection(where: { featured: true }) {
+   productsCollection(where: { featured: true }, limit: 10) {
     items {
-     pName
-     brandNameCollection(limit: 1) {
+     sys {
+      id
+     }
+     pictureUrl
+     catNameCollection(limit: 12) {
       items {
        name
       }

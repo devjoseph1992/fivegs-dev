@@ -1,12 +1,13 @@
+import Navbar from '@/components/layouts/Navbar';
 import { ChakraProvider } from '@chakra-ui/react';
-import Container from '@/components/layouts/Container';
+import Footer from '@/components/layouts/Footer';
 
 function MyApp({ Component, pageProps }) {
  return (
   <ChakraProvider resetCSS>
-   <Container>
-    <Component {...pageProps} />
-   </Container>
+   <Navbar />
+   <Component {...pageProps} />
+   <Footer />
   </ChakraProvider>
  );
 }
