@@ -7,20 +7,35 @@ const graphQLClient = new GraphQLClient(endpoint, {
  },
 });
 
+export const getFeaturedProduct = async (slug) => {
+ const productQuerys = gql`
+  query getFeaturedProduct($slug: String!) {
+   productsCollection(where: { slug: $slug }) {
+    items {
+     name
+     pictureUrl
+     categories
+     slug
+    }
+   }
+  }
+ `;
+ return graphQLClient.request(productQuerys, {
+  slug,
+ });
+};
+
 export const getFeaturedProducts = async () => {
  const productsQuery = gql`
   {
-   productsCollection(where: { featured: true }, limit: 10) {
+   productsCollection(where: { featured: true }) {
     items {
      sys {
       id
      }
+     categories
      pictureUrl
-     catNameCollection(limit: 12) {
-      items {
-       name
-      }
-     }
+     slug
     }
    }
   }
