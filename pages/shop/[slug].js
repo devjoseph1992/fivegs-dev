@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Text } from '@chakra-ui/react';
 import { getFeaturedProducts, getFeaturedProduct } from '@/utils/contentful';
 
 export async function getStaticPaths() {
@@ -18,13 +19,18 @@ export async function getStaticProps(context) {
  };
 }
 
-export default function Product() {
+export default function Product({ products }) {
  return (
   <>
    <Head>
     <title>FiveGiftShop</title>
    </Head>
    hello from children
+   {products.map((product) => (
+    <>
+     <Text>{product.name}</Text>
+    </>
+   ))}
   </>
  );
 }

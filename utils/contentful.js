@@ -8,19 +8,21 @@ const graphQLClient = new GraphQLClient(endpoint, {
 });
 
 export const getFeaturedProduct = async (slug) => {
- const productQuerys = gql`
+ const productsQuerys = gql`
   query getFeaturedProduct($slug: String!) {
    productsCollection(where: { slug: $slug }) {
     items {
+     sys {
+      id
+     }
      name
      pictureUrl
      categories
-     slug
     }
    }
   }
  `;
- return graphQLClient.request(productQuerys, {
+ return graphQLClient.request(productsQuerys, {
   slug,
  });
 };
